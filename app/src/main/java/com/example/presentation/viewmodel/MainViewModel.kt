@@ -11,8 +11,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val repository: InvoiceRepository) : ViewModel() {
+class MainViewModel @Inject constructor(private val repository: InvoiceRepository) : ViewModel() {
     private val _invoicesSortByDate get() = repository.sortByDate()
     private val _invoicesSortByName get() = repository.sortByName()
     private val _invoice = MutableStateFlow(listOf<Invoice>())
@@ -31,8 +32,13 @@ class MainViewModel(private val repository: InvoiceRepository) : ViewModel() {
     fun sortInvoice(sortType: SortType) {
         viewModelScope.launch {
             when (sortType) {
-                SortType.DATE -> { _invoicesSortByDate.firstOrNull()?.let { _invoice.value = it } }
-                SortType.NAME -> { _invoicesSortByName.firstOrNull()?.let { _invoice.value = it } }
+                SortType.DATE -> {
+                    _invoicesSortByDate.firstOrNull()?.let { _invoice.value = it }
+                }
+
+                SortType.NAME -> {
+                    _invoicesSortByName.firstOrNull()?.let { _invoice.value = it }
+                }
             }
         }
         this.sortType = sortType

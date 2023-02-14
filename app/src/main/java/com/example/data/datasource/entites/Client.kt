@@ -11,4 +11,14 @@ data class Client(
     val postCode: String? = null,
     val city: String? = null,
     val province: String? = null,
-)
+) {
+    fun searchClient(query: String): Boolean {
+        val matchCombination = listOf(
+            "${name.first()}",
+            " $name",
+        )
+        return matchCombination.any {
+            it.contains(query, ignoreCase = true)
+        }
+    }
+}

@@ -102,3 +102,82 @@ val mock_data = listOf(
     )
 )
 
+val client_mock = listOf(
+    Client(
+        "Kifle",
+        phoneNumber = "000-000-0000",
+        email = "nahom@gmail.com",
+        country = "Ethiopia",
+        street = "Addis Ababa",
+        apt = "123",
+        postCode = "20866",
+        city = null,
+        province = null
+    ),
+    Client(
+        "Nahom",
+        phoneNumber = "000-000-0000",
+        email = "nahom@gmail.com",
+        country = "Ethiopia",
+        street = "Addis Ababa",
+        apt = "123",
+        postCode = "20866",
+        city = null,
+        province = null
+    ),
+    Client(
+        "Negash",
+        phoneNumber = "000-000-0000",
+        email = "nahom@gmail.com",
+        country = "Ethiopia",
+        street = "Addis Ababa",
+        apt = "123",
+        postCode = "20866",
+        city = null,
+        province = null
+    ),
+    Client(
+        "Baba",
+        phoneNumber = "000-000-0000",
+        email = "nahom@gmail.com",
+        country = "Ethiopia",
+        street = "Addis Ababa",
+        apt = "123",
+        postCode = "20866",
+        city = null,
+        province = null
+    ),
+    Client(
+        "Kidus",
+        phoneNumber = "000-000-0000",
+        email = "nahom@gmail.com",
+        country = "Ethiopia",
+        street = "Addis Ababa",
+        apt = "123",
+        postCode = "20866",
+        city = null,
+        province = null
+    ),
+    Client(
+        "Shewa",
+        phoneNumber = "000-000-0000",
+        email = "nahom@gmail.com",
+        country = "Ethiopia",
+        street = "Addis Ababa",
+        apt = "123",
+        postCode = "20866",
+        city = null,
+        province = null
+    ),
+    Client(
+        "Honey",
+        phoneNumber = "000-000-0000",
+        email = "nahom@gmail.com",
+        country = "Ethiopia",
+        street = "Addis Ababa",
+        apt = "123",
+        postCode = "20866",
+        city = null,
+        province = null
+    )
+)

@@ -1,7 +1,9 @@
 package com.example.data.repository
 
+import com.example.data.datasource.entites.Client
 import com.example.data.datasource.entites.Invoice
 import com.example.data.datasource.local.InvoiceDAO
+import com.example.data.datasource.local.client_mock
 import com.example.data.datasource.local.mock_data
 import com.example.domain.repository.InvoiceRepository
 import kotlinx.coroutines.flow.Flow
@@ -42,4 +44,8 @@ class InvoiceRepository @Inject constructor(private val db: InvoiceDAO) : Invoic
             it.sortedByDescending { invoice -> invoice.client.name }
         }
     }
+
+    override fun getAllClientContact(): Flow<List<Client>> = flowOf(client_mock)
+
+
 }
