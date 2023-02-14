@@ -5,8 +5,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface InvoiceRepository {
     suspend fun addInvoice(invoice: Invoice)
-    suspend fun getAllInvoice(): Flow<List<Invoice>>
     suspend fun deleteInvoice(invoice: Invoice)
-    suspend fun filterInvoiceByClientName(client: String): Flow<List<Invoice>>
-    suspend fun filterByRefNo(refNo: Long): Flow<List<Invoice>>
+    fun filterInvoiceByClientName(client: String): Flow<List<Invoice>>
+    fun filterByRefNo(refNo: Long): Flow<List<Invoice>>
+    fun sortByDate(): Flow<List<Invoice>>
+    fun sortByName(): Flow<List<Invoice>>
 }

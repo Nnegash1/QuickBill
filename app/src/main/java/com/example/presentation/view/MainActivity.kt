@@ -3,16 +3,31 @@ package com.example.presentation.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.other.SortType
 import com.example.presentation.view.ui.theme.QuickBillTheme
+import com.example.presentation.viewmodel.InvoiceViewModelFactory
+import com.example.presentation.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var factory: InvoiceViewModelFactory
+    private val mainViewModel by viewModels<MainViewModel> { factory }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,25 +37,29 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val result = mainViewModel.invoice.collectAsState()
+                    Column() {
+                        Button(onClick = { mainViewModel.sortInvoice(SortType.NAME) }) {
+                            Text(text = "Update")
+                        }
+                        LazyColumn() {
+                            items(result.value) {
+                                Text(text = it.client.name)
+                            }
+                        }
+                    }
+
+
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     QuickBillTheme {
-        Greeting("Android")
     }
 }

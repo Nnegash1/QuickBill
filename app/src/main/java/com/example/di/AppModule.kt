@@ -3,22 +3,23 @@ package com.example.di
 import android.app.Application
 import androidx.room.Room
 import com.example.data.datasource.local.InvoiceDataBase
-import com.example.data.repository.InvoiceRepository as RepoImplementation
+import com.example.presentation.viewmodel.InvoiceViewModelFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import com.example.data.repository.InvoiceRepository as RepoImplementation
 
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
 
-//    @Provides
-//    @Singleton
-//    fun invoiceViewModelProvider(repo: RepoImplementation): InvoiceViewModelFactory {
-//        return InvoiceViewModelFactory(repo)
-//    }
+    @Provides
+    @Singleton
+    fun invoiceViewModelProvider(repo: RepoImplementation): InvoiceViewModelFactory {
+        return InvoiceViewModelFactory(repo)
+    }
 
     @Provides
     @Singleton
