@@ -22,9 +22,7 @@ class ContactViewModel @Inject constructor(val repository: InvoiceRepository) : 
             if (text.isBlank()) {
                 client
             } else {
-                client.filter {
-                    it.searchClient(text)
-                }
+                client.filter { it.searchClient(text) }
             }
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(1000), _client.value)
 

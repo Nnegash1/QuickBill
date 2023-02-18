@@ -1,3 +1,3 @@
 package com.example.other
 
-enum class SortType { DATE, NAME }
+enum class SortType { DATE, PRICE }

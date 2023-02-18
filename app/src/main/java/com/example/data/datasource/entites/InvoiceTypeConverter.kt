@@ -1,8 +1,12 @@
 package com.example.data.datasource.entites
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 
 class InvoiceTypeConverter {
@@ -32,13 +36,40 @@ class InvoiceTypeConverter {
     }
 
     @TypeConverter
-    fun detailToGson(invoiceDetails: InvoiceDetails): String {
-        return gson.toJson(invoiceDetails)
+    fun toDate(dateLong: Long?): Date? {
+        return dateLong?.let { Date(it) }
     }
 
     @TypeConverter
-    fun gsonToDetail(invoiceDetails: String): InvoiceDetails {
-        val objectType = object : TypeToken<InvoiceDetails>() {}.type
-        return gson.fromJson(invoiceDetails, objectType)
+    fun fromDate(date: Date?): Long? {
+        return date?.time
+    }
+
+    /**
+     * Converts [ByteArray] to [Bitmap].
+     *
+     * @param bytes to be converted
+     * @return decoded [Bitmap]
+     */
+    @TypeConverter
+    fun toBitmap(bytes: ByteArray): Bitmap {
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+    }
+
+    /**
+     * Converts [Bitmap] to [ByteArray].
+     *
+     * @param bmp to be converted
+     * @return [ByteArray]
+     */
+    @TypeConverter
+    fun fromBitmap(bmp: Bitmap): ByteArray {
+        val outputStream = ByteArrayOutputStream()
+        bmp.compress(Bitmap.CompressFormat.PNG, PNG_QUALITY, outputStream)
+        return outputStream.toByteArray()
+    }
+
+    companion object {
+        private const val PNG_QUALITY = 100
     }
 }

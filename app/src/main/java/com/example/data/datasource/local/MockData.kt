@@ -1,25 +1,26 @@
 package com.example.data.datasource.local
 
+import com.example.data.datasource.entites.BusinessSetting
 import com.example.data.datasource.entites.Client
 import com.example.data.datasource.entites.Invoice
-import com.example.data.datasource.entites.InvoiceDetails
 import com.example.data.datasource.entites.Item
-import java.util.Date
-import java.util.Random
+import java.util.*
 
 
-val mock_data = listOf(
+val mock_data =
     Invoice(
+        invoiceNumber = Random().nextLong().toString(),
+        issueDate = Date(),
         item = listOf(
             Item(
-                "1200R20 668 22PR",
-                "TRIANGLE",
-                "CHINA",
-                "40111000",
-                "TIRE",
-                12,
-                12.0,
-                12.0,
+                description = "1200R20 668 22PR",
+                brand = "TRIANGLE",
+                origin = "CHINA",
+                hsCode = "40111000",
+                item = "TIRE",
+                qty = 12,
+                unitPrice = 12.0,
+                fobPrice = 12.0,
             )
         ),
         client = Client(
@@ -30,77 +31,97 @@ val mock_data = listOf(
             street = "Addis Ababa",
             apt = "123",
             postCode = "20866",
-            city = null,
-            province = null
+            city = "",
+            province = ""
         ),
-        invoiceDetails = InvoiceDetails(
-            invoiceNumber = Random().nextLong().toString(),
-            issueDate = Date().toString()
-        )
-    ),
-
-    Invoice(
-        item = listOf(
-            Item(
-                "1200R20 668 22PR",
-                "TRIANGLE",
-                "CHINA",
-                "40111000",
-                "TIRE",
-                12,
-                12.0,
-                12.0,
-            )
-        ),
-        client = Client(
-            "Eyob",
-            phoneNumber = "000-000-0000",
-            email = "nahom@gmail.com",
-            country = "Ethiopia",
-            street = "Addis Ababa",
-            apt = "123",
-            postCode = "20866",
-            city = null,
-            province = null
-        ),
-        invoiceDetails = InvoiceDetails(
-            invoiceNumber = Random().nextLong().toString(),
-            issueDate = Date().toString()
-        )
-    ),
-
-    Invoice(
-
-        item = listOf(
-            Item(
-                "1200R20 668 22PR",
-                "TRIANGLE",
-                "CHINA",
-                "40111000",
-                "TIRE",
-                12,
-                12.0,
-                12.0,
-            )
-        ),
-        client = Client(
-            "Nahom",
-            phoneNumber = "000-000-0000",
-            email = "nahom@gmail.com",
-            country = "Ethiopia",
-            street = "Addis Ababa",
-            apt = "123",
-            postCode = "20866",
-            city = null,
-            province = null
-        ),
-        invoiceDetails = InvoiceDetails(
-            invoiceNumber = Random().nextLong().toString(),
-            issueDate = Date().toString()
-
-        )
+        totalPrice = 12.0
     )
-)
+
+//
+//    Invoice(
+//        item = listOf(
+//            Item(
+//                description = "1200R20 668 22PR",
+//                brand = "TRIANGLE",
+//                origin = "CHINA",
+//                hsCode = "40111000",
+//                item ="TIRE",
+//                qty = 12,
+//                unitPrice = 12.0,
+//                fobPrice = 12.0,
+//            ),
+//            Item(
+//                description = "1200R20 668 22PR",
+//                brand = "TRIANGLE",
+//                origin = "CHINA",
+//                hsCode = "40111000",
+//                item ="TIRE",
+//                qty = 12,
+//                unitPrice = 12.0,
+//                fobPrice = 12.0,
+//            ),
+//            Item(
+//                description = "1200R20 668 22PR",
+//                brand = "TRIANGLE",
+//                origin = "CHINA",
+//                hsCode = "40111000",
+//                item ="TIRE",
+//                qty = 12,
+//                unitPrice = 12.0,
+//                fobPrice = 12.0,
+//            )
+//        ),
+//        client = Client(
+//            "Eyob",
+//            phoneNumber = "000-000-0000",
+//            email = "nahom@gmail.com",
+//            country = "Ethiopia",
+//            street = "Addis Ababa",
+//            apt = "123",
+//            postCode = "20866",
+//            city = "",
+//            province = ""
+//        ),
+//        invoiceDetails = InvoiceDetails(
+//            invoiceNumber = Random().nextLong().toString(),
+//            issueDate = Date().toString()
+//        ),
+//        totalPrice = 12.0
+//    ),
+//
+//    Invoice(
+//
+//        item = listOf(
+//            Item(
+//                description = "1200R20 668 22PR",
+//                brand = "TRIANGLE",
+//                origin = "CHINA",
+//                hsCode = "40111000",
+//                item ="TIRE",
+//                qty = 12,
+//                unitPrice = 12.0,
+//                fobPrice = 12.0,
+//            )
+//        ),
+//        client = Client(
+//            "Nahom",
+//            phoneNumber = "000-000-0000",
+//            email = "nahom@gmail.com",
+//            country = "Ethiopia",
+//            street = "Addis Ababa",
+//            apt = "123",
+//            postCode = "20866",
+//            city = "",
+//            province = ""
+//        ),
+//        invoiceDetails = InvoiceDetails(
+//            invoiceNumber = Random().nextLong().toString(),
+//            issueDate = Date().toString()
+//
+//        ),
+//        totalPrice = 12.0
+//    )
+//)
 
 val client_mock = listOf(
     Client(
@@ -111,8 +132,8 @@ val client_mock = listOf(
         street = "Addis Ababa",
         apt = "123",
         postCode = "20866",
-        city = null,
-        province = null
+        city = "",
+        province = ""
     ),
     Client(
         "Nahom",
@@ -122,8 +143,8 @@ val client_mock = listOf(
         street = "Addis Ababa",
         apt = "123",
         postCode = "20866",
-        city = null,
-        province = null
+        city = "",
+        province = ""
     ),
     Client(
         "Negash",
@@ -133,8 +154,8 @@ val client_mock = listOf(
         street = "Addis Ababa",
         apt = "123",
         postCode = "20866",
-        city = null,
-        province = null
+        city = "",
+        province = ""
     ),
     Client(
         "Baba",
@@ -144,8 +165,8 @@ val client_mock = listOf(
         street = "Addis Ababa",
         apt = "123",
         postCode = "20866",
-        city = null,
-        province = null
+        city = "",
+        province = ""
     ),
     Client(
         "Kidus",
@@ -155,8 +176,8 @@ val client_mock = listOf(
         street = "Addis Ababa",
         apt = "123",
         postCode = "20866",
-        city = null,
-        province = null
+        city = "",
+        province = ""
     ),
     Client(
         "Shewa",
@@ -166,8 +187,8 @@ val client_mock = listOf(
         street = "Addis Ababa",
         apt = "123",
         postCode = "20866",
-        city = null,
-        province = null
+        city = "",
+        province = ""
     ),
     Client(
         "Honey",
@@ -177,7 +198,21 @@ val client_mock = listOf(
         street = "Addis Ababa",
         apt = "123",
         postCode = "20866",
-        city = null,
-        province = null
-    )
+        city = "",
+        province = ""
+    ),
+)
+
+val businessDetail = BusinessSetting(
+    businessName = "Tire",
+    country = "Ethiopia",
+    street = "Kirkos",
+    postCode = "10992",
+    city = "AddisAbaba",
+    state = "MD",
+    taxRegNo = "102121",
+    contactPerson = "Kifle",
+    phoneNumber = "210-221-1100",
+    email = "nn@gmail.com",
+    image = null
 )

@@ -3,6 +3,8 @@ package com.example.di
 import android.app.Application
 import androidx.room.Room
 import com.example.data.datasource.local.InvoiceDataBase
+import com.example.data.repository.BusinessRepositoryImplementation
+import com.example.domain.repository.BusinessRepository
 import com.example.presentation.viewmodel.InvoiceViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -17,14 +19,23 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun invoiceViewModelProvider(repo: RepoImplementation): InvoiceViewModelFactory {
-        return InvoiceViewModelFactory(repo)
+    fun invoiceViewModelProvider(
+        repo: RepoImplementation,
+        repoBusinessRepository: BusinessRepository
+    ): InvoiceViewModelFactory {
+        return InvoiceViewModelFactory(repo, repoBusinessRepository)
     }
 
     @Provides
     @Singleton
     fun invoiceRepositoryProvider(db: InvoiceDataBase): RepoImplementation {
-        return RepoImplementation(db.getDao())
+        return RepoImplementation(db.getDao(), db.getItemDAO())
+    }
+
+    @Provides
+    @Singleton
+    fun businessLogic(db: InvoiceDataBase): BusinessRepository {
+        return BusinessRepositoryImplementation(db.getBusinessDAO())
     }
 
     @Provides
