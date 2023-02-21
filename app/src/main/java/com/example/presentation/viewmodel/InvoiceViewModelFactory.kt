@@ -3,12 +3,14 @@ package com.example.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.domain.repository.BusinessRepository
+import com.example.domain.repository.ClientRepository
 import com.example.domain.repository.InvoiceRepository
 import javax.inject.Inject
 
 class InvoiceViewModelFactory @Inject constructor(
     private val repo: InvoiceRepository,
-    private val businessRepo: BusinessRepository
+    private val businessRepo: BusinessRepository,
+    private val clientRepository: ClientRepository
 ) :
     ViewModelProvider.NewInstanceFactory() {
 
@@ -20,7 +22,7 @@ class InvoiceViewModelFactory @Inject constructor(
             }
             ContactViewModel::class.java.simpleName -> {
                 @Suppress("UNCHECKED_CAST")
-                ContactViewModel(repo) as T
+                ContactViewModel(clientRepository) as T
             }
             ItemViewModel::class.java.simpleName -> {
                 @Suppress("UNCHECKED_CAST")

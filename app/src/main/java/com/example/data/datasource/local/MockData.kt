@@ -18,21 +18,16 @@ val mock_data =
                 origin = "CHINA",
                 hsCode = "40111000",
                 item = "TIRE",
-                qty = 12,
                 unitPrice = 12.0,
-                fobPrice = 12.0,
             )
         ),
         client = Client(
-            "Kifle",
+            name = "Kifle",
             phoneNumber = "000-000-0000",
             email = "nahom@gmail.com",
             country = "Ethiopia",
-            street = "Addis Ababa",
-            apt = "123",
-            postCode = "20866",
-            city = "",
-            province = ""
+            postCode = "20999",
+            state = "MD"
         ),
         totalPrice = 12.0
     )
@@ -125,81 +120,60 @@ val mock_data =
 
 val client_mock = listOf(
     Client(
-        "Kifle",
+        name = "Kifle",
         phoneNumber = "000-000-0000",
         email = "nahom@gmail.com",
         country = "Ethiopia",
-        street = "Addis Ababa",
-        apt = "123",
-        postCode = "20866",
-        city = "",
-        province = ""
+        postCode = "20999",
+        state = "MD"
     ),
     Client(
-        "Nahom",
+        name = "Nahom",
         phoneNumber = "000-000-0000",
         email = "nahom@gmail.com",
         country = "Ethiopia",
-        street = "Addis Ababa",
-        apt = "123",
-        postCode = "20866",
-        city = "",
-        province = ""
+        postCode = "20999",
+        state = "MD"
     ),
     Client(
-        "Negash",
+        name = "Negash",
         phoneNumber = "000-000-0000",
         email = "nahom@gmail.com",
         country = "Ethiopia",
-        street = "Addis Ababa",
-        apt = "123",
-        postCode = "20866",
-        city = "",
-        province = ""
+        postCode = "20999",
+        state = "MD"
     ),
     Client(
-        "Baba",
+        name = "Baba",
         phoneNumber = "000-000-0000",
         email = "nahom@gmail.com",
         country = "Ethiopia",
-        street = "Addis Ababa",
-        apt = "123",
-        postCode = "20866",
-        city = "",
-        province = ""
+        postCode = "20999",
+        state = "MD"
     ),
     Client(
-        "Kidus",
+        name = "Kidus",
         phoneNumber = "000-000-0000",
         email = "nahom@gmail.com",
         country = "Ethiopia",
-        street = "Addis Ababa",
-        apt = "123",
-        postCode = "20866",
-        city = "",
-        province = ""
+        postCode = "20999",
+        state = "MD"
     ),
     Client(
-        "Shewa",
+        name = "Shewa",
         phoneNumber = "000-000-0000",
         email = "nahom@gmail.com",
         country = "Ethiopia",
-        street = "Addis Ababa",
-        apt = "123",
-        postCode = "20866",
-        city = "",
-        province = ""
+        postCode = "20999",
+        state = "MD"
     ),
     Client(
-        "Honey",
+        name = "Honey",
         phoneNumber = "000-000-0000",
         email = "nahom@gmail.com",
         country = "Ethiopia",
-        street = "Addis Ababa",
-        apt = "123",
-        postCode = "20866",
-        city = "",
-        province = ""
+        postCode = "20999",
+        state = "MD"
     ),
 )
 

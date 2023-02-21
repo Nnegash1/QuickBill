@@ -1,4 +1,4 @@
-package com.example.presentation.view.ui.homepage
+package com.example.presentation.view.ui.itempage
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -11,34 +11,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.data.datasource.entites.Invoice
-import com.example.presentation.view.ui.clientpage.TopBar
+import com.example.data.datasource.entites.Item
 import com.example.presentation.view.ui.navigation.Navigation
 import com.example.presentation.view.ui.util.ScreenRoute
 import com.example.quickbill.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(
-    invoice: List<Invoice>,
+fun ItemList(
+    itemList: List<Item>,
     search: String,
     searchName: (String) -> Unit,
     nav: NavController
 ) {
     Scaffold(
-        bottomBar = { Navigation(nav) },
-        topBar = { TopBar("Quick Bill") },
+        topBar = { TopBar("Item List") },
         floatingActionButtonPosition = FabPosition.End,
+        bottomBar = { Navigation(nav) },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {
-                    nav.navigate(ScreenRoute.ItemListScreen.route)
-                },
+                onClick = { nav.navigate(ScreenRoute.ItemScreen.route) },
                 containerColor = MaterialTheme.colorScheme.tertiary
             ) {
                 Icon(
@@ -80,7 +75,7 @@ fun HomeScreen(
                 }
             }
             LazyColumn(verticalArrangement = Arrangement.SpaceBetween) {
-                items(invoice) {
+                items(itemList) {
                     Box(modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 10.dp)
@@ -108,38 +103,7 @@ fun HomeScreen(
                                     fontWeight = FontWeight.ExtraBold,
                                     style = MaterialTheme.typography.bodyLarge
                                 )
-                                Icon(
-                                    painter = painterResource(id = R.drawable.arrow_right),
-                                    contentDescription = "Add"
-                                )
                             }
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(end = 5.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-
-                                Text(
-                                    text = "Due",
-                                    modifier = Modifier.padding(end = 15.dp, start = 15.dp),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontWeight = FontWeight.Bold,
-                                )
-                                Text(
-                                    text = buildAnnotatedString {
-                                        append("$")
-                                        withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                                            append(it.totalPrice.toString())
-                                        }
-                                    },
-                                    modifier = Modifier.padding(end = 15.dp),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
-
                             Spacer(modifier = Modifier.heightIn(10.dp))
                             Divider(
                                 color = MaterialTheme.colorScheme.primary,
@@ -155,16 +119,25 @@ fun HomeScreen(
 
 fun getAnnotatedString(
     searchQuery: String,
-    invoice: Invoice,
+    it: Item,
     highlightStyle: SpanStyle
 ): AnnotatedString {
     //Find where searchQuery appears in courseName
-    val startIndex = invoice.client.name.indexOf(searchQuery, 0, ignoreCase = true)
-    val builder = AnnotatedString.Builder(invoice.client.name)
+    val startIndex = it.description.indexOf(searchQuery, 0, ignoreCase = true)
+    val builder = AnnotatedString.Builder(it.description)
     //If the query is in the name, add a style, otherwise do nothing
     if (startIndex >= 0) {
         val endIndex = startIndex + searchQuery.length
         builder.addStyle(highlightStyle, startIndex, endIndex)
     }
     return builder.toAnnotatedString()
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(title: String) {
+    TopAppBar(
+        title = { Text(title, color = MaterialTheme.colorScheme.onPrimary) },
+        colors = TopAppBarDefaults.largeTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
+    )
 }

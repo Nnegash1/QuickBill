@@ -1,6 +1,5 @@
 package com.example.domain.repository
 
-import com.example.data.datasource.entites.Client
 import com.example.data.datasource.entites.Invoice
 import com.example.data.datasource.entites.Item
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +11,6 @@ interface InvoiceRepository {
     fun filterByRefNo(refNo: Long): Flow<List<Invoice>>
     fun sortByDate(): Flow<List<Invoice>>
     fun sortByPrice(): Flow<List<Invoice>>
-    fun getAllClientContact(): Flow<List<Client>>
     fun addItem(item: Item)
     fun getAllItem(): Flow<List<Item>>
 }

@@ -1,16 +1,18 @@
 package com.example.data.datasource.entites
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class Client(
+    @PrimaryKey(autoGenerate = true)
+    val pk: Int = 0,
     val name: String = "",
     val phoneNumber: String,
     val email: String,
     val country: String,
-    val street: String,
-    val apt: String,
     val postCode: String,
-    val city: String,
-    val province: String,
+    val state: String,
 ) {
     fun searchClient(query: String): Boolean {
         val matchCombination = listOf(

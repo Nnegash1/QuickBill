@@ -63,7 +63,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun addInvoice(invoice: Invoice, context: Context) = viewModelScope.launch {
-        businessRepo.addBusinessDetails(businessDetail, context)
+        //businessRepo.addBusinessDetails(businessDetail, context)
         repository.addInvoice(invoice)
     }
 }
